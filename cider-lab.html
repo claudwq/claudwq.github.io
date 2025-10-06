@@ -17,6 +17,16 @@
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
+  <style>
+    #headerwrap {
+      margin-bottom: 0 !important;
+      padding-bottom: 20px !important;
+    }
+    section#main {
+      margin-top: 0 !important;
+      padding-top: 20px !important;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-offset="64" data-target="#section-topbar">
   <!-- <div id="section-topbar">
@@ -50,54 +60,69 @@
       </div>
     </div>
   </div> -->
-  <div id="section-topbar">
-    <div id="topbar-inner">
-      <div class="container">
-        <div class="row">
-          <div class="dropdown">
-            <ul id="nav" class="nav">
-              <li class="menu-item"><a href="index.html#about" title="About"><i class="fa fa-user"></i> About</a></li>
-              <li class="menu-item"><a href="index.html#resume" title="Resume"><i class="fa fa-file-text-o"></i> Resume</a></li>
-              <li class="menu-item"><a href="index.html#work" title="Works"><i class="fa fa-briefcase"></i> Works</a></li>
-              <li class="menu-item"><a href="index.html#contact" title="Contact"><i class="fa fa-envelope"></i> Contact</a></li>
-              <!-- Added page links with text labels -->
-              <li class="menu-item"><a href="teaching.html" title="Teaching"><i class="fa fa-graduation-cap"></i> Teaching</a></li>
-              <li class="menu-item"><a href="publications.html" title="Publications"><i class="fa fa-book"></i> Publications</a></li>
-              <li class="menu-item"><a href="cider-lab.html" title="SFSU CIDER Lab"><i class="fa fa-flask"></i> CIDER Lab</a></li>
-              <li class="menu-item"><a href="read-list.html" title="Read List"><i class="fa fa-list-ul"></i> Read List</a></li>
-            </ul>
-            <!--/ uL#nav -->
-          </div>
-          <!-- /.dropdown -->
-
-          <div class="clear"></div>
-        </div>
-        <!--/.row -->
+  <nav class="navbar navbar-default navbar-fixed-top" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html" style="font-weight: bold; color: #333;">Qun Wang</a>
       </div>
-      <!--/.container -->
-
-      <div class="clear"></div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.html#about"><i class="fa fa-user"></i> About</a></li>
+          <li><a href="index.html#resume"><i class="fa fa-file-text-o"></i> Resume</a></li>
+          <li><a href="index.html#work"><i class="fa fa-briefcase"></i> Works</a></li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-flask"></i> Research <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="active"><a href="cider-lab.html"><i class="fa fa-flask"></i> CIDER Lab</a></li>
+              <li><a href="crii.html"><i class="fa fa-cogs"></i> CRII Project</a></li>
+              <li><a href="publications.html"><i class="fa fa-book"></i> Publications</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-graduation-cap"></i> Academic <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="teaching.html"><i class="fa fa-graduation-cap"></i> Teaching</a></li>
+              <li><a href="read-list.html"><i class="fa fa-list-ul"></i> Read List</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#contact"><i class="fa fa-envelope"></i> Contact</a></li>
+        </ul>
+      </div>
     </div>
-    <!--/ #topbar-inner -->
-  </div>
-  <!--/ #section-topbar -->
+  </nav>
 
 
-  <div id="headerwrap">
+  <div id="headerwrap" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 80px 0 60px; margin-top: 50px; color: white;">
     <div class="container">
       <div class="row centered">
         <div class="col-lg-12">
-          <h1><font color="#060606">SFSU CIDER Lab</font></h1>
-          <h3><font color="#060606">Cybersecurity and Intelligent Distributed Edge Research Laboratory</font></h3>
-          <p><font color="#060606">Advancing next-generation intelligent wireless communication, edge intelligence applications, and affordable AI solutions</font></p>
+          <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <div style="display: inline-flex; align-items: center; gap: 15px; margin-bottom: 20px; padding: 8px 20px; background: rgba(255,255,255,0.2); border-radius: 25px; backdrop-filter: blur(10px);">
+              <img src="img/cider.jpg" alt="CIDER Lab" style="width: 40px; height: 40px; border-radius: 8px;">
+              <span style="font-weight: 600;">SFSU CIDER Lab</span>
+            </div>
+            <h1 style="font-size: 2.8em; font-weight: 700; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Cybersecurity and Intelligent Distributed Edge Research Laboratory</h1>
+            <p style="font-size: 1.2em; opacity: 0.9; margin-bottom: 30px; line-height: 1.6;">Advancing next-generation intelligent wireless communication, edge intelligence applications, and affordable AI solutions</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+              <a href="#overview" class="btn btn-default" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; transition: all 0.3s ease;">Overview</a>
+              <a href="#thrusts" class="btn btn-default" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; transition: all 0.3s ease;">Research Areas</a>
+              <a href="#team" class="btn btn-default" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; transition: all 0.3s ease;">Team</a>
+            </div>
+          </div>
         </div>
-        <!--/.col-lg-12 -->
       </div>
-      <!--/.row -->
     </div>
-    <!--/.container -->
   </div>
-  <!--/.#headerwrap -->
   <section id="main" name="main">
     <div class="container desc">
       <div class="row">
@@ -107,6 +132,9 @@
         <div class="col-lg-6">
           <h6>Research Overview</h6>
           <p>Cybersecurity and Intelligent Distributed Edge Research (CIDER) Lab focuses on advancing next-generation intelligent wireless communication, edge intelligence applications, and affordable AI solutions. Our research emphasizes efficiency and security improvements, aiming to develop robust, cutting-edge technologies for future communication systems. By leveraging federated learning, generative AI, GNNs, and large language models, we address key challenges in communication, security, and intelligent applications while ensuring scalability, privacy, and adaptability across diverse environments.</p>
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="img/ChatGPT Image Oct 6, 2025, 11_45_37 AM.png" alt="Research Visualization" class="img-responsive" style="width: 100%; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          </div>
           
           <h6>Research Areas</h6>
           <ol>
@@ -123,7 +151,7 @@
           <h6>2025</h6>
           <ul>
             <li>I received a National Science Foundation (NSF) Collaborative Research CISE Core Small NeTS Grant on Intelligent Reflecting Surface Assisted Physical Layer Security Enhancement as lead PI, 3-year grant with $60,000 budget and collaborative with Dr. Haijian Sun from UGA and Dr. Hao Yue from UCSC.</li>
-            <li>Our CIDER Lab project WildfireRFM won the 1st prize in KumoRFM Hacton, congratulations to Binrongzhu, Guiran Liu, and Yang Liu.</li>
+            <li><img src="img/082025-Kumo.ai-Hackathon-30.jpg" alt="KumoRFM Hackathon Award" style="float: left; width: 200px; margin: 0 15px 10px 0; border-radius: 4px;">Our CIDER Lab project WildfireRFM won the 1st prize in KumoRFM Hacton, congratulations to Binrongzhu, Guiran Liu, and Yang Liu.</li>
             <li>I received a National Science Foundation (NSF) CRII project on spectrum sharing and sensing network. This is a single-PI, 2-year grant with $175,000 budget.</li>
             <li>Our research project has been selected for the Gilead Innovation Initiative 2025 Summer Research Award, with $5,000 allocated to Binrong Zhu and $5,000 to Yang Liu.</li>
             <li>Congratulations to Xu Gu for being selected as the 2025 SFSU Graduate Distinguished Achievement Award Recipient.</li>
@@ -131,6 +159,10 @@
             <li>Satvik Verma presented our research at AAAI 2025 Spring Symposium.</li>
             <li>Our research work: S. Verma, Q. Wang, E. W. Bethel, "Intelligent IoT Attack Detection via ODLLM," accepted by AAAI 2025 Spring Symposium.</li>
             <li>Our research work: W. Guo, Q. Wang, H. Yue, H. Sun, R. Q. Hu. (2025). Efficient Phishing URL Detection Using Graph-based Machine Learning and Loopy Belief Propagation. Accepted by IEEE ICC 2025.</li>
+            <li>Our research work: Sicheng Liu, Qun Wang, Zhuwei Qin, Weishan Zhang, Jingyi Wang, and Xiang Ma, "IRS Assisted Decentralized Learning for Wideband Spectrum Sensing." Accepted by 2025 International Symposium on Intelligent Computing and Networking (ISICN 2025), Spring 2025. Sicheng Liu is a student from CSC 699.</li>
+            <li>Our research work: David Chen, Qun Wang, Haijian Sun, and Yue Hao, "GNN Based PLS Enhancement for Next Generation Spectrum Sharing Industrial Networks," Accepted by 2025 International Symposium on Intelligent Computing and Networking (ISICN 2025), Spring 2025. David Chen is a student from CSC 895.</li>
+            <li>Our paper: Qun Wang, Yingzhou Lu, Guiran Liu, Binrong Zhu, and Yang Liu, "LLM‑Assisted Alpha‑Fairness for 6 GHz Wi‑Fi/NR‑U Coexistence: An Agentic Orchestrator for Throughput, Energy, and SLA" has been accepted by IEEE IEMCON 2025 Conference (Graduate Research work).</li>
+            <li>Our paper: Guiran Liu, Binrong Zhu, Yang Liu, and Qun Wang, "Design of a Cross-Layer AI Agent for Secure Spectrum-Aware Network Slicing" has been accepted by Chen Institute Symposium for AI Accelerated Science 2025 (Graduate Research work).</li>
             <li>I am accepted and invited to attend NSF NeTS Early Career Workshop 2025 at NSF with travel support.</li>
           </ul>
           
@@ -138,9 +170,15 @@
           <ul>
             <li>Congratulations to Satvik Verma and Sicheng Liu for their student abstract accepted by IEEE DSAA'24 with travel support.</li>
             <li>Serve as a guest editor for the Special Issue "Cognitive Semantic Communications for 6G Wireless Networks", VSI: CSC-6GWN in Physical Communication (IF: 2.0).</li>
+            <li>J. Xu, Q. Wang, Yuhang Cao, Baitao Zeng, Sicheng Liu. "A general-purpose device for interaction with LLMs." arXiv preprint arXiv:2408.10230. (Accepted by Future Technologies Conference (FTC) 2024, Sicheng Liu is a student from CSC 699)</li>
             <li>X. Ma, Q. Wang, H. Sun, R. Q. Hu and Y. Qian, "CSMAAFL: Client Scheduling and Model Aggregation in Asynchronous Federated Learning," ICC 2024 - IEEE International Conference on Communications, Denver, CO, USA, 2024, pp. 274-279.</li>
             <li>M. Xiang, Y. Zhou, H. Zhang, Q. Wang, H. Sun, H. Wang, and R. Q. Hu. "Exploring Communication Technologies, Standards, and Challenges in Electrified Vehicle Charging." arXiv preprint arXiv:2403.16830 (2024) (Accepted by IEEE Open Journal of the Communications Society, Impact Factor: 6.3).</li>
             <li>"Design Effective and Equitable Professional Learning for Middle School Computer Science Teachers", Co-PI, Awarded by NSF 23-596 Discovery Research PreK-1, Fall 2024.</li>
+          </ul>
+
+          <h6>2023</h6>
+          <ul>
+            <li>"Intelligent Wireless Spectrum Monitoring with Decentralized On-device Learning," Co-Investigator, Co-PI, Awarded by SFSU RSCA Fund award, Spring 2023 (Internal Funding). Co-PI.</li>
           </ul>
 
           <h6 class="mt">Lab Members</h6>
