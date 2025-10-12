@@ -1,429 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Claud - Bootstrap Resume Template</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Raleway:400,300,700" rel="stylesheet">
-
-  <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
-  <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Qun Wang | Assistant Professor @ SFSU</title>
+  <meta name="description" content="Qun Wang — Assistant Professor of Computer Science at San Francisco State University. Edge AI, wireless systems, spectrum sharing, and distributed learning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/favicon.png" />
   <style>
-    #headerwrap {
-      margin-bottom: 0 !important;
-      padding-bottom: 20px !important;
+    :root{
+      --bg:#f8fafc;           /* page background */
+      --card:#ffffff;         /* card bg */
+      --muted:#64748b;        /* secondary text */
+      --text:#1e293b;         /* primary text */
+      --brand:#3b82f6;        /* accent */
+      --brand-2:#10b981;      /* secondary accent */
+      --ring:rgba(0,0,0,.08);
+      --shadow:0 4px 20px rgba(0,0,0,.08);
+      --radius:12px;
     }
-    section#about {
-      margin-top: 0 !important;
-      padding-top: 20px !important;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif; 
+      color:var(--text); background:linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1100px; margin-inline:auto; padding:0 20px}
+
+    /* Nav */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(8px); background:rgba(248,250,252,.95); border-bottom:1px solid var(--ring)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px; color:var(--text)}
+    .brand img{width:28px; height:28px; border-radius:8px}
+    .nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+    .nav a{display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:8px 10px; border-radius:12px; color:var(--muted)}
+    .nav a:hover,.nav a.active{color:var(--text); background:rgba(59,130,246,.1)}
+    .menu-btn{display:none}
+
+    /* Hero */
+    .hero{padding:84px 0 36px}
+    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center}
+    .badge{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; background:rgba(59,130,246,.1); color:#1d4ed8; border:1px solid rgba(59,130,246,.3); border-radius:999px; font-weight:600; letter-spacing:.2px}
+    .title{font-weight:800; line-height:1.15; font-size:clamp(32px,4.6vw,50px); margin:12px 0 8px; color:var(--text)}
+    .subtitle{color:var(--muted); font-size:clamp(16px,2.2vw,18px)}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; border:1px solid var(--ring); background:#ffffff; color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:all 0.3s ease}
+    .btn:hover{transform:translateY(-2px); box-shadow:0 8px 25px rgba(0,0,0,.15)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),#60a5fa); color:#ffffff; font-weight:600}
+    .btn.success{background:linear-gradient(135deg,var(--brand-2),#34d399); color:#ffffff; font-weight:600}
+    .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .chip{padding:6px 10px; border-radius:999px; background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.2); font-size:13px; color:#1d4ed8}
+    .portrait{position:relative; text-align:center}
+    .portrait img{width:180px; height:180px; border-radius:50%; object-fit:cover; border:4px solid #ffffff; box-shadow:0 8px 32px rgba(0,0,0,.1)}
+
+    /* Sections */
+    section{padding:60px 0}
+    h2.section-title{font-size:22px; letter-spacing:.4px; text-transform:uppercase; color:var(--muted); margin-bottom:24px}
+    .card{background:var(--card); border:1px solid var(--ring); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px}
+
+    /* About */
+    .about{display:grid; grid-template-columns:1fr; gap:20px}
+    .list-kv{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+    .list-kv li{display:flex; gap:10px}
+    .list-kv span{color:var(--muted)}
+
+    /* Scrollable lists */
+    .scrollable{max-height:400px; overflow-y:auto; padding-right:8px}
+    .scrollable::-webkit-scrollbar{width:6px}
+    .scrollable::-webkit-scrollbar-track{background:#f1f5f9; border-radius:3px}
+    .scrollable::-webkit-scrollbar-thumb{background:#cbd5e1; border-radius:3px}
+    .scrollable::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+
+    /* News timeline */
+    .timeline{display:grid; gap:16px}
+    .tl{display:grid; grid-template-columns:80px 1fr; gap:16px; align-items:start; padding:16px; border-left:3px solid var(--brand); position:relative; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .tl::before{content:""; position:absolute; left:-7px; top:24px; width:10px; height:10px; background:var(--brand); border-radius:50%; box-shadow:0 0 0 4px var(--bg)}
+    .tl time{color:var(--brand); font-weight:600; font-size:14px}
+    .tl p{margin:0; color:var(--text)}
+
+    /* Publications */
+    .pub-item{padding:16px; border-bottom:1px solid var(--ring); margin-bottom:12px}
+    .pub-item:last-child{border-bottom:none; margin-bottom:0}
+    .pub-item small{color:var(--muted)}
+
+    /* Cards grid */
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
+
+    /* Footer */
+    footer{padding:40px 0; border-top:1px solid var(--ring); color:var(--muted); background:var(--card)}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-grid{grid-template-columns:1fr; text-align:center}
+      .grid-2{grid-template-columns:1fr}
+      .nav ul{display:none}
+      .menu-btn{display:inline-flex; align-items:center; gap:8px; color:var(--muted); background:transparent; border:1px solid var(--ring); border-radius:12px; padding:8px 10px}
+      .nav.open ul{display:flex; flex-direction:column; position:absolute; top:64px; right:14px; background:rgba(255,255,255,.98); border:1px solid var(--ring); border-radius:16px; padding:12px; width:min(260px,90vw); box-shadow:var(--shadow)}
+      .nav.open a{padding:10px 12px}
+      .portrait {order:-1;}
+      .hero{padding-top:72px}
     }
   </style>
-
 </head>
-
-<body data-spy="scroll" data-offset="64" data-target=".navbar">
-
-  <nav class="navbar navbar-default navbar-fixed-top" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#about" style="font-weight: bold; color: #333;">Qun Wang</a>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a class="smothscroll" href="#about"><i class="fa fa-user"></i> About</a></li>
-          <li><a class="smothscroll" href="#resume"><i class="fa fa-file-text-o"></i> Resume</a></li>
-          <li><a class="smothscroll" href="#work"><i class="fa fa-briefcase"></i> Works</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-flask"></i> Research <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="cider-lab.html"><i class="fa fa-flask"></i> CIDER Lab</a></li>
-              <li><a href="crii.html"><i class="fa fa-cogs"></i> CRII Project</a></li>
-              <li><a href="publications.html"><i class="fa fa-book"></i> Publications</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-graduation-cap"></i> Academic <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="teaching.html"><i class="fa fa-graduation-cap"></i> Teaching</a></li>
-              <li><a href="read-list.html"><i class="fa fa-list-ul"></i> Read List</a></li>
-            </ul>
-          </li>
-          <li><a class="smothscroll" href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
-        </ul>
-      </div>
+<body>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Qun Wang — Home">
+        <img src="img/apple-touch-icon.png" alt="QW"> <span>Qun Wang</span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu" onclick="document.getElementById('nav').classList.toggle('open')">☰ Menu</button>
+      <ul aria-label="Primary">
+        <li><a href="#about" class="active">About</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#funding">Funding</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
-  <div id="headerwrap" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 80px 0 60px; margin-top: 50px;">
+  <!-- HERO -->
+  <header class="hero container" id="top">
+    <div class="hero-grid">
+      <div>
+        <span class="badge" title="NSF Awarded">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.39 4.84 5.34.78-3.86 3.76.91 5.3L12 14.77 6.22 16.68l.91-5.3L3.27 7.62l5.34-.78L12 2z"/></svg>
+          NSF #2451262 · #2523751
+        </span>
+        <h1 class="title">Qun Wang (王群)</h1>
+        <p class="subtitle">Assistant Professor, Computer Science @ San Francisco State University (SFSU). Researching <strong>Edge AI</strong>, <strong>wireless systems</strong>, and <strong>spectrum sharing & security</strong> with a focus on energy‑aware and privacy‑preserving learning across heterogeneous devices.</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:qunwang@sfsu.edu" aria-label="Email Qun">✉︎ Contact</a>
+          <a class="btn success" href="Qun_Wang.pdf" target="_blank" rel="noopener">⬇︎ CV (PDF)</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=i2WquFgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="btn" href="https://www.linkedin.com/in/qun-wang-claud/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="meta" aria-label="Research topics">
+          <span class="chip">Edge–Cloud Collaboration</span>
+          <span class="chip">Spectrum Sharing & IRS</span>
+          <span class="chip">On‑device LLMs</span>
+          <span class="chip">Security & Privacy</span>
+        </div>
+      </div>
+      <div class="portrait">
+        <img src="img/DSC_9474.jpg" alt="Portrait of Qun Wang" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
     <div class="container">
-      <div class="row centered">
-        <div class="col-lg-12">
-          <div style="display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto;">
-            <img src="img/DSC_9474.jpg" alt="Qun Wang" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
-            <div style="text-align: left; flex: 1; min-width: 300px;">
-              <h1 style="color: #1e293b; font-size: 2.5em; font-weight: 700; margin-bottom: 10px;">Qun Wang (王群)</h1>
-              <h3 style="color: #475569; font-size: 1.3em; font-weight: 400; margin-bottom: 20px;">Assistant Professor, Computer Science @ SFSU</h3>
-              <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;">
-                <a href="mailto:qunwang@sfsu.edu" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #3b82f6; color: white; text-decoration: none; border-radius: 25px; font-weight: 500; transition: all 0.3s ease;">
-                  <i class="fa fa-envelope"></i> Contact
-                </a>
-                <a href="Qun_Wang.pdf" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #10b981; color: white; text-decoration: none; border-radius: 25px; font-weight: 500; transition: all 0.3s ease;">
-                  <i class="fa fa-download"></i> CV
-                </a>
+      <div class="card">
+        <h2 class="section-title">About</h2>
+        <p>Dr. Qun Wang is an Assistant Professor in the Computer Science Department at San Francisco State University (SFSU). His research bridges next‑generation wireless networks, machine learning, and edge–cloud collaboration. He investigates <em>energy‑aware optimization</em>, <em>privacy‑preserving LLM inference</em>, and <em>spectrum sharing security</em> to support intelligent, resilient, and sustainable infrastructures for smart cities and industrial IoT.</p>
+        <p>Previously, Dr. Wang worked at Lawrence Berkeley National Laboratory (LBNL) as a Postdoctoral Researcher and Research Affiliate, and received a Ph.D. in Electrical and Computer Engineering from Utah State University.</p>
+        <ul class="list-kv" aria-label="Quick facts">
+          <li><strong>Affiliation:</strong> <span>San Francisco State University</span></li>
+          <li><strong>Lab:</strong> <span><a href="cider-lab.html">CIDER Lab</a> — Cybersecurity & Intelligent Distributed Edge Research</span></li>
+          <li><strong>Email:</strong> <span><a href="mailto:qunwang@sfsu.edu">qunwang@sfsu.edu</a></span></li>
+          <li><strong>CV:</strong> <span><a href="Qun_Wang.pdf" target="_blank" rel="noopener">Download PDF</a></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <div class="container">
+      <h2 class="section-title">News</h2>
+      <div class="card">
+        <div class="scrollable">
+          <div class="timeline">
+            <div class="tl">
+              <time>2025</time>
+              <div>
+                <p>Received <strong>NSF Collaborative Research CISE Core Small NeTS Grant</strong> ($60,000) as Lead PI for "Intelligent Reflecting Surface Assisted Physical Layer Security Enhancement" with collaborators from UGA and UCSC.</p>
+                <p>Received <strong>NSF CRII Grant</strong> ($175,000) as Single-PI for "Spectrum Sharing and Sensing Networks" research project.</p>
+                <p>Our project "Small Size LLM Enhancement for Privacy-Preserving Network Threat Detection" received <strong>$1,500</strong> API credits through the <strong>OpenAI Cybersecurity Grant Program</strong>.</p>
+                <p>Our research work: <i>Binrong Zhu, Ruxue Jin, Yang Liu, Guiran Liu, Qun Wang, and Phuong Mai Nguyen</i>, "Edge AI Agent Design for Policy-Aware Urban Waste Management," has been accepted by <strong>AIAS 2025</strong>.</p>
+                <p>Our research work: "Attention-Guided Task Complexity Prediction for Edge-Cloud LLM Collaboration" has been accepted as a poster by <strong>Bay Area Machine Learning Symposium</strong>.</p>
+                <p>Our CIDER Lab project <strong>WildfireRFM</strong> won the <strong>1st prize in KumoRFM Hackathon</strong>, congratulations to Binrong Zhu, Guiran Liu, and Yang Liu.</p>
+                <p>Our research project has been selected for the <strong>Gilead Innovation Initiative 2025 Summer Research Award</strong>, with $5,000 to <strong>Binrong Zhu</strong> and $5,000 to <strong>Yang Liu</strong>.</p>
+                <p>Congratulations to <strong>Xu Gu</strong> for being selected as the <strong>2025 SFSU Graduate Distinguished Achievement Award</strong> Recipient.</p>
+                <p>Congratulations to <strong>Satvik Verma</strong>, <strong>Xu Gu</strong>, and <strong>Ruxue Jin</strong> on their graduation.</p>
+                <p><strong>Satvik Verma</strong> presented our research at <strong>AAAI 2025 Spring Symposium</strong>.</p>
+                <p><i>S. Verma, Q. Wang, E. W. Bethel</i>, "Intelligent IoT Attack Detection via ODLLM," accepted by <strong>AAAI 2025 Spring Symposium</strong>.</p>
+                <p><i>W. Guo, Q. Wang, H. Yue, H. Sun, R. Q. Hu</i> (2025). Efficient Phishing URL Detection Using Graph-based Machine Learning and Loopy Belief Propagation. Accepted by <strong>IEEE ICC 2025</strong>.</p>
+                <p><i>S. Liu, Q. Wang, Z. Qin, W. Zhang, J. Wang, X. Ma</i>, "IRS Assisted Decentralized Learning for Wideband Spectrum Sensing." Accepted by <strong>ISICN 2025</strong>.</p>
+                <p><i>D. Chen, Q. Wang, H. Sun, Y. Hao</i>, "GNN Based PLS Enhancement for Next Generation Spectrum Sharing Industrial Networks." Accepted by <strong>ISICN 2025</strong>.</p>
+                <p>Invited to attend <strong>NSF NeTS Early Career Workshop 2025</strong> with travel support.</p>
               </div>
-              <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <a href="https://scholar.google.com/citations?user=i2WquFgAAAAJ&hl=en" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #4285f4; color: white; text-decoration: none; border-radius: 25px; font-weight: 500; transition: all 0.3s ease;" title="Google Scholar">
-                  <i class="fa fa-google"></i> Google Scholar
-                </a>
-                <a href="https://www.linkedin.com/in/qun-wang-claud/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #0077b5; color: white; text-decoration: none; border-radius: 25px; font-weight: 500; transition: all 0.3s ease;" title="LinkedIn Profile">
-                  <i class="fa fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://www.linkedin.com/groups/14784164/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #0077b5; color: white; text-decoration: none; border-radius: 25px; font-weight: 500; transition: all 0.3s ease;" title="LinkedIn Group">
-                  <i class="fa fa-users"></i> LinkedIn Group
-                </a>
+            </div>
+            <div class="tl">
+              <time>2024</time>
+              <div>
+                <p>Received <strong>NSF Discovery Research PreK-12 Grant</strong> ($1,396,551) as Co-PI for "Design Effective and Equitable Professional Learning for Middle School Computer Science Teachers".</p>
+                <p>Congratulations to <strong>Satvik Verma</strong> and <strong>Sicheng Liu</strong> for their student abstract accepted by <strong>IEEE DSAA'24</strong> with travel support.</p>
+                <p>Guest editor for the Special Issue "Cognitive Semantic Communications for 6G Wireless Networks", VSI: CSC-6GWN in <i>Physical Communication</i> (IF: 2.0).</p>
+                <p><i>J. Xu, Q. Wang, Y. Cao, B. Zeng, S. Liu</i>, "A general-purpose device for interaction with llms." Accepted by <strong>Future Technologies Conference (FTC) 2024</strong>.</p>
+                <p><i>X. Ma, Q. Wang, H. Sun, R. Q. Hu, Y. Qian</i>, "CSMAAFL: Client Scheduling and Model Aggregation in Asynchronous Federated Learning." <strong>IEEE ICC 2024</strong>.</p>
+                <p><i>M. Xiang, Y. Zhou, H. Zhang, Q. Wang, H. Sun, H. Wang, R. Q. Hu</i>, "Exploring Communication Technologies, Standards, and Challenges in Electrified Vehicle Charging." Accepted by <strong>IEEE Open Journal of the Communications Society</strong> (IF: 6.3).</p>
+                <p>Joined San Francisco State University as Assistant Professor in Computer Science Department.</p>
+                <p>Completed postdoctoral research fellowship at Lawrence Berkeley National Lab (LBNL) focusing on 5G NR–based scientific edge computing simulation.</p>
+              </div>
+            </div>
+            <div class="tl">
+              <time>2023</time>
+              <div>
+                <p>Received <strong>SFSU RSCA Fund Award</strong> as Co-PI for "Intelligent Wireless Spectrum Monitoring with Decentralized On-device Learning" (Internal Funding, Spring 2023).</p>
+                <p>Started postdoctoral research fellowship at Lawrence Berkeley National Lab (LBNL).</p>
+                <p>Completed Ph.D. in Electrical and Computer Engineering from Utah State University.</p>
+              </div>
+            </div>
+            <div class="tl">
+              <time>Earlier</time>
+              <div>
+                <p>Earned Ph.D. in Electrical and Computer Engineering from Utah State University with focus on machine learning and network optimization.</p>
+                <p>Contributed to several key projects in mobile computing and intelligent application development during graduate studies.</p>
+                <p>Published extensively in collaborative edge computing and energy-efficient communication systems.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-
-  <section id="about" name="about">
-    <div id="intro">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-2 col-lg-offset-1">
-            <h5>ABOUT</h5>
-          </div>
-          <div class="col-lg-6">
-            <p>Dr. Qun Wang is an Assistant Professor in the Computer Science Department at San Francisco State University (SFSU). His research focuses on Edge Artificial Intelligence (EAI), distributed learning, and optimization for wireless communication systems, with particular emphasis on IoT networks and resource-constrained environments. His work aims to develop efficient data processing frameworks that address challenges in real-time data analysis, collaborative learning, and model deployment across heterogeneous edge devices.</p>
-            <p>Before joining SFSU, Dr. Wang earned his Ph.D. in Electrical and Computer Engineering from Utah State University with a focus on machine learning and network optimization, contributing to several key projects in mobile computing and intelligent application development. He also worked as a postdoctoral research fellow at Lawrence Berkeley National Lab (LBNL) for 5G NR–based scientific edge computing simulation. He has published extensively in collaborative edge computing and energy-efficient communication systems. Dr. Wang is dedicated to advancing STEM education and inclusive research opportunities through partnerships with programs like PINK at SFSU.</p>
-          </div>
-          <div class="col-lg-3">
-            <p><a href="#"><i class="icon-file"></i></a>
-              <sm><a href="Qun_Wang.pdf">DOWNLOAD PDF</a></sm>
-            </p>
-          </div>
-
-        </div>
-        <!--/.row -->
-      </div>
-      <!--/.container -->
-    </div>
-    <!--/ #intro -->
   </section>
 
-
-  <section id="resume" name="resume">
-    <!--EDUCATION DESCRIPTION -->
-    <div class="container desc">
-      <div class="row">
-
-        <div class="col-lg-2 col-lg-offset-1">
-          <h5>EDUCATION</h5>
-        </div>
-        <div class="col-lg-6">
-          <p>
-            <t>Ph.D. in Electrical and Computer Engineering</t><br/> Utah State University <br/>
-            <!--i>5 Years Program</i-->
-          </p>
-        </div>
-        <div class="col-lg-3">
-          <p>
-            <!--sm>GRADUATING IN MAY 2021</sm--><br/>
-            <imp>
-              <sm>Completed</sm>
-            </imp>
-          </p>
-        </div>
-
-      </div>
-      <!--/.row -->
-    </div>
-    <!--/.container -->
-  </section>
-
-  <!-- NEWS (matches template blocks and spacing) -->
-  <div class="container desc">
-    <div class="row">
-      <div class="col-lg-2 col-lg-offset-1">
-        <h5>NEWS</h5>
-      </div>
-      <div class="col-lg-6">
-        <h6>2025</h6>
-        <ul>
-          <li>Received <b>NSF Collaborative Research CISE Core Small NeTS Grant</b> ($60,000) as Lead PI for "Intelligent Reflecting Surface Assisted Physical Layer Security Enhancement" with collaborators from UGA and UCSC.</li>
-          <li>Received <b>NSF CRII Grant</b> ($175,000) as Single-PI for "Spectrum Sharing and Sensing Networks" research project.</li>
-          <li>Our project "Small Size LLM Enhancement for Privacy-Preserving Network Threat Detection" received <b>$1,500</b> API credits through the <b>OpenAI Cybersecurity Grant Program</b>.</li>
-          <li>Our research work: <i>Binrong Zhu, Ruxue Jin, Yang Liu, Guiran Liu, Qun Wang, and Phuong Mai Nguyen</i>, "Edge AI Agent Design for Policy-Aware Urban Waste Management," has been accepted by <b>AIAS 2025</b>.</li>
-          <li>Our research work: "Attention-Guided Task Complexity Prediction for Edge-Cloud LLM Collaboration" has been accepted as a poster by <b>Bay Area Machine Learning Symposium</b>.</li>
-          <li>Our CIDER Lab project <b>WildfireRFM</b> won the <b>1st prize in KumoRFM Hackathon</b>, congratulations to Binrong Zhu, Guiran Liu, and Yang Liu.</li>
-          <li>Our research project has been selected for the <b>Gilead Innovation Initiative 2025 Summer Research Award</b>, with $5,000 to <b>Binrong Zhu</b> and $5,000 to <b>Yang Liu</b>.</li>
-          <li>Congratulations to <b>Xu Gu</b> for being selected as the <b>2025 SFSU Graduate Distinguished Achievement Award</b> Recipient.</li>
-          <li>Congratulations to <b>Satvik Verma</b>, <b>Xu Gu</b>, and <b>Ruxue Jin</b> on their graduation.</li>
-          <li><b>Satvik Verma</b> presented our research at <b>AAAI 2025 Spring Symposium</b>.</li>
-          <li><i>S. Verma, Q. Wang, E. W. Bethel</i>, "Intelligent IoT Attack Detection via ODLLM," accepted by <b>AAAI 2025 Spring Symposium</b>.</li>
-          <li><i>W. Guo, Q. Wang, H. Yue, H. Sun, R. Q. Hu</i> (2025). Efficient Phishing URL Detection Using Graph-based Machine Learning and Loopy Belief Propagation. Accepted by <b>IEEE ICC 2025</b>.</li>
-          <li><i>S. Liu, Q. Wang, Z. Qin, W. Zhang, J. Wang, X. Ma</i>, "IRS Assisted Decentralized Learning for Wideband Spectrum Sensing." Accepted by <b>ISICN 2025</b>.</li>
-          <li><i>D. Chen, Q. Wang, H. Sun, Y. Hao</i>, "GNN Based PLS Enhancement for Next Generation Spectrum Sharing Industrial Networks." Accepted by <b>ISICN 2025</b>.</li>
-          <li>Invited to attend <b>NSF NeTS Early Career Workshop 2025</b> with travel support.</li>
-        </ul>
-        <h6>2024</h6>
-        <ul>
-          <li>Received <b>NSF Discovery Research PreK-12 Grant</b> ($1,396,551) as Co-PI for "Design Effective and Equitable Professional Learning for Middle School Computer Science Teachers".</li>
-          <li>Congratulations to <b>Satvik Verma</b> and <b>Sicheng Liu</b> for their student abstract accepted by <b>IEEE DSAA'24</b> with travel support.</li>
-          <li>Guest editor for the Special Issue "Cognitive Semantic Communications for 6G Wireless Networks", VSI: CSC-6GWN in <i>Physical Communication</i> (IF: 2.0).</li>
-          <li><i>J. Xu, Q. Wang, Y. Cao, B. Zeng, S. Liu</i>, "A general-purpose device for interaction with llms." Accepted by <b>Future Technologies Conference (FTC) 2024</b>.</li>
-          <li><i>X. Ma, Q. Wang, H. Sun, R. Q. Hu, Y. Qian</i>, "CSMAAFL: Client Scheduling and Model Aggregation in Asynchronous Federated Learning." <b>IEEE ICC 2024</b>.</li>
-          <li><i>M. Xiang, Y. Zhou, H. Zhang, Q. Wang, H. Sun, H. Wang, R. Q. Hu</i>, "Exploring Communication Technologies, Standards, and Challenges in Electrified Vehicle Charging." Accepted by <b>IEEE Open Journal of the Communications Society</b> (IF: 6.3).</li>
-          <li>Joined San Francisco State University as Assistant Professor in Computer Science Department.</li>
-          <li>Completed postdoctoral research fellowship at Lawrence Berkeley National Lab (LBNL) focusing on 5G NR–based scientific edge computing simulation.</li>
-        </ul>
-        <h6>2023</h6>
-        <ul>
-          <li>Received <b>SFSU RSCA Fund Award</b> as Co-PI for "Intelligent Wireless Spectrum Monitoring with Decentralized On-device Learning" (Internal Funding, Spring 2023).</li>
-          <li>Started postdoctoral research fellowship at Lawrence Berkeley National Lab (LBNL).</li>
-          <li>Completed Ph.D. in Electrical and Computer Engineering from Utah State University.</li>
-        </ul>
-        <h6>Earlier</h6>
-        <ul>
-          <li>Earned Ph.D. in Electrical and Computer Engineering from Utah State University with focus on machine learning and network optimization.</li>
-          <li>Contributed to several key projects in mobile computing and intelligent application development during graduate studies.</li>
-          <li>Published extensively in collaborative edge computing and energy-efficient communication systems.</li>
-        </ul>
-      </div>
-    </div>
-    <br>
-  </div>
-
-	<!-- WORK / PUBLICATIONS TEASER -->
-  <section id="work" name="work">
-    <!--PORTFOLIO DESCRIPTION -->
-    <div class="container desc">
-      <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-          <h5>Publication</h5>
-        </div>
-        <div class="col-lg-6">
-			<p>Q. Wang, F. Zhou, R. Q. Hu and Y. Qian, "Energy-Efficient Beamforming and Cooperative Jamming in IRS-Assisted MISO Networks," ICC 2020 - 2020 IEEE International Conference on Communications (ICC), Dublin, Ireland, 2020, pp. 1-7.</p>
-			<p>Q. Wang, L. T. Tan, R. Q. Hu and Y. Qian, "Hierarchical Energy Efficient Mobile Edge Computing in IoT Networks," in IEEE Internet of Things Journal.</p>
-          <p>Q. Wang and F. Zhou, "Fair Resource Allocation in an MEC-Enabled Ultra-Dense IoT Network with NOMA," 2019 IEEE International Conference on Communications Workshops (ICC Workshops), Shanghai, China, 2019, pp. 1-6.</p>
-			<p>Q. Wang, L. T. Tan, R. Q. Hu, and G. Wu, "Hierarchical collaborative cloud and fog computing in IoT networks," Proc. 2018 WCSP, Hangzhou, 2018, pp. 1-7.</p>
-			<p>H. Sun, Q. Wang, S. Ahmed, and R. Q. Hu, "Non-orthogonal multiple access in a mmWave based IoT wireless system with SWIPT," Proc. 2017 IEEE VTC Spring, Sydney, NSW, 2017, pp. 1-5.</p>
-			<p>H. Sun, Q. Wang, R. Q. Hu and Y. Qian, "Outage Probability Study in a NOMA Relay System," 2017 IEEE Wireless Communications and Networking Conference (WCNC), San Francisco, CA, 2017, pp. 1-6.</p>
-          <p><sm><a href="publications.html">Full list of publications →</a></sm></p>
-        </div>
-      </div>
-      <!--/.row -->
-      <br>
-      <br>
-    </div>
-    <!--/.container -->
-  </section>
-
-  <!-- AWARDS (preserved) -->
-  <div class="container desc">
-    <div class="row">
-      <div class="col-lg-2 col-lg-offset-1">
-        <h5>AWARDS</h5>
-      </div>
-      <div class="col-lg-6">
-        <p>
-          <t>Second Prize of Shaanxi Division of China Innovation and Entrepreneurship Competition</t><br/> Xueba Router <br/>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>September 2015</sm>
-        </p>
-      </div>
-      <div class="col-lg-6 col-lg-offset-3">
-        <p>
-          <t>Excellent Graduate Student Award.</t><br/>
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>2013-2014</sm>
-        </p>
-      </div>
-      <div class="col-lg-6 col-lg-offset-3">
-        <p>
-          <t>The First-Class Scholarship</t><br/> 3 Years
-        </p>
-      </div>
-      <div class="col-lg-3">
-        <p>
-          <sm>2013-2015</sm>
-        </p>
-      </div>
-
-    </div>
-    <!--/.row -->
-    <br>
-  </div>
-
-  <!-- FUNDING & PROGRAMS -->
-  <div class="container desc">
-    <div class="row">
-      <div class="col-lg-2 col-lg-offset-1">
-        <h5>FUNDING & PROGRAMS</h5>
-      </div>
-      <div class="col-lg-6">
-        <p>
-          <t>NSF Collaborative Research CISE Core Small NeTS Grant</t><br/> 
-          "Intelligent Reflecting Surface Assisted Physical Layer Security Enhancement"<br/>
-          <sm>Lead PI, 3-year grant, $60,000 budget. Collaborating with Dr. Haijian Sun (UGA) and Dr. Hao Yue (UCSC)</sm>
-        </p>
-        <p>
-          <t>NSF CRII Grant</t><br/> 
-          "Spectrum Sharing and Sensing Networks"<br/>
-          <sm>Single-PI, 2-year grant, $175,000 budget</sm>
-        </p>
-        <p>
-          <t>NSF Discovery Research PreK-12 Grant</t><br/> 
-          "Design Effective and Equitable Professional Learning for Middle School Computer Science Teachers"<br/>
-          <sm>Co-PI, $1,396,551 budget, Fall 2024</sm>
-        </p>
-        <p>
-          <t>SFSU RSCA Fund Award</t><br/> 
-          "Intelligent Wireless Spectrum Monitoring with Decentralized On-device Learning"<br/>
-          <sm>Co-PI, Internal Funding, Spring 2023</sm>
-        </p>
-        <p>
-          <t>OpenAI Cybersecurity Grant Program</t><br/> 
-          "Small Size LLM Enhancement for Privacy-Preserving Network Threat Detection"<br/>
-          <sm>Received $1,500 API credits for cybersecurity research project</sm>
-        </p>
-        <p>
-          <t>Gilead Innovation Initiative 2025 Summer Research Award</t><br/> 
-          Research project on innovative applications in healthcare technology<br/>
-          <sm>$5,000 to Binrong Zhu and $5,000 to Yang Liu</sm>
-        </p>
-        <p>
-          <t>NSF NeTS Early Career Workshop 2025</t><br/> 
-          Invited participant with travel support<br/>
-          <sm>Networking and Telecommunications Systems research community</sm>
-        </p>
-        <p>
-          <t>IEEE DSAA'24 Student Abstract Support</t><br/> 
-          Travel support for student researchers<br/>
-          <sm>Satvik Verma and Sicheng Liu</sm>
-        </p>
-        <p>
-          <t>Special Issue Guest Editor</t><br/> 
-          "Cognitive Semantic Communications for 6G Wireless Networks"<br/>
-          <sm>Physical Communication Journal (IF: 2.0)</sm>
-        </p>
-      </div>
-    </div>
-    <!--/.row -->
-    <br>
-  </div>
-
-  <!--SKILLS DESCRIPTION (unchanged) -->
-  <!-- <div id="skillswrap">
+  <!-- RESEARCH -->
+  <section id="research">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-          <h5>SKILLS</h5>
+      <h2 class="section-title">Research</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin-top:0">Current Grants</h3>
+          <ul>
+            <li><strong>NSF CISE Core Small (NeTS)</strong> — "Intelligent Reflecting Surface Assisted Physical Layer Security Enhancement" <em>(Lead-PI)</em> <span class="chip">NSF #2523751</span></li>
+            <li><strong>NSF CRII (NeTS)</strong> — "Spectrum Sharing and Sensing Networks" <em>(PI)</em> <span class="chip">NSF #2451262</span></li>
+            <li><strong>NSF DRK-12</strong> — "Design Effective and Equitable Professional Learning for Middle School Computer Science Teachers" <em>(Co-PI)</em></li>
+            <li><strong>OpenAI Cybersecurity Grant</strong> — "Small Size LLM Enhancement for Privacy-Preserving Network Threat Detection" <span class="chip">API Credits</span></li>
+            <li><strong>Gilead Innovation Initiative 2025</strong> — Summer Research Award <span class="chip">Students: B. Zhu, Y. Liu</span></li>
+            <li><strong>SFSU RSCA Fund Award</strong> — "Intelligent Wireless Spectrum Monitoring with Decentralized On-device Learning" <em>(Co-PI)</em></li>
+          </ul>
         </div>
-        <div class="col-lg-3 centered">
-          <canvas id="javascript" height="130" width="130"></canvas>
-          <p><font color="#00FFFF">MATLAB</font></p>
-          <br>
-        </div>
-        <div class="col-lg-3 centered">
-          <canvas id="bootstrap" height="130" width="130"></canvas>
-          <p><font color="#00FFFF">C</font></p>
-          <br>
-        </div>
-        <div class="col-lg-3 centered">
-          <canvas id="wordpress" height="130" width="130"></canvas>
-          <p><font color="#00FFFF">Python</font></p>
-          <br>
+        <div class="card">
+          <h3 style="margin-top:0">CIDER Lab</h3>
+          <p><strong>Cybersecurity & Intelligent Distributed Edge Research</strong></p>
+          <p>Our lab focuses on edge AI, on-device LLMs, wireless systems, and cybersecurity. We develop efficient data processing frameworks for real-time analysis, collaborative learning, and model deployment across heterogeneous edge devices.</p>
+          <p><strong>Research Areas:</strong></p>
+          <ul>
+            <li>Edge-Cloud Collaboration</li>
+            <li>Spectrum Sharing & IRS</li>
+            <li>On-device LLMs</li>
+            <li>Security & Privacy</li>
+            <li>Energy-aware Optimization</li>
+          </ul>
+          <p><strong>Facilities:</strong> USRPs, OpenWRT Wi-Fi, IRS panels, Jetson edge nodes, SFSU HPC (A100), lab servers (RTX 4090).</p>
+          <p><a href="cider-lab.html">Learn more about CIDER Lab →</a></p>
         </div>
       </div>
-      <!--/.row -->
-      <!--br>
     </div>
-    <!--/.container -->
-  <!--/div> -->
-  <!--/ #skillswrap -->
-
-
-  <section id="contact" name="contact">
-    <!--FOOTER DESCRIPTION -->
-    <div id="footwrap">
-      <div class="container desc">
-        <div class="row">
-
-          <div class="col-lg-2">
-            <h5>CONTACT</h5>
-          </div>
-          <div class="col-lg-5">
-            <p>
-              <t>Email</t><br/> <a href="mailto:qunwang@sfsu.edu">qunwang@sfsu.edu</a> <br/>
-            </p>
-          </div>
-          <div class="col-lg-5">
-            <p>
-              <t>Social Links</t><br/>
-              <a href="https://scholar.google.com/citations?user=i2WquFgAAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fa fa-google"></i></a>
-              <a href="https://www.linkedin.com/in/qun-wang-claud/" target="_blank" title="LinkedIn Profile"><i class="fa fa-linkedin"></i></a>
-              <a href="https://www.linkedin.com/groups/14784164/" target="_blank" title="LinkedIn Group"><i class="fa fa-users"></i></a>
-              <a href="https://www.researchgate.net/profile/Qun_Wang50" target="_blank" title="ResearchGate"><i class="fa fa-book"></i></a>
-              <a href="cider-lab.html" title="SFSU CIDER Lab"><i class="fa fa-flask"></i></a>
-              <a href="teaching.html" title="Teaching"><i class="fa fa-graduation-cap"></i></a>
-            </p>
-          </div>
-
-        </div>
-        <!--/.row -->
-      </div>
-      <!--/.container -->
-    </div>
-    <!--/ #footer -->
   </section>
 
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="container">
+      <h2 class="section-title">Publications</h2>
+      <div class="card">
+        <div class="scrollable">
+          <div class="pub-item">
+            <p><strong>S. Liu, Q. Wang, Z. Qin, W. Zhang, J. Wang, X. Ma</strong>, "IRS Assisted Decentralized Learning for Wideband Spectrum Sensing." <small>ISICN 2025</small></p>
+          </div>
+          <div class="pub-item">
+            <p><strong>D. Chen, Q. Wang, H. Sun, Y. Hao</strong>, "GNN Based PLS Enhancement for Next Generation Spectrum Sharing Industrial Networks." <small>ISICN 2025</small></p>
+      </div>
+          <div class="pub-item">
+            <p><strong>S. Verma, Q. Wang, E. W. Bethel</strong>, "Intelligent IoT Attack Detection via ODLLM." <small>AAAI 2025 Spring Symposium</small></p>
+      </div>
+          <div class="pub-item">
+            <p><strong>W. Guo, Q. Wang, H. Yue, H. Sun, R. Q. Hu</strong>, "Efficient Phishing URL Detection Using Graph-based Machine Learning and Loopy Belief Propagation." <small>IEEE ICC 2025</small></p>
+    </div>
+          <div class="pub-item">
+            <p><strong>Binrong Zhu, Ruxue Jin, Yang Liu, Guiran Liu, Qun Wang, and Phuong Mai Nguyen</strong>, "Edge AI Agent Design for Policy-Aware Urban Waste Management." <small>AIAS 2025</small></p>
+  </div>
+          <div class="pub-item">
+            <p><strong>J. Xu, Q. Wang, Y. Cao, B. Zeng, S. Liu</strong>, "A general-purpose device for interaction with llms." <small>Future Technologies Conference (FTC) 2024</small></p>
+        </div>
+          <div class="pub-item">
+            <p><strong>X. Ma, Q. Wang, H. Sun, R. Q. Hu, Y. Qian</strong>, "CSMAAFL: Client Scheduling and Model Aggregation in Asynchronous Federated Learning." <small>IEEE ICC 2024</small></p>
+        </div>
+          <div class="pub-item">
+            <p><strong>M. Xiang, Y. Zhou, H. Zhang, Q. Wang, H. Sun, H. Wang, R. Q. Hu</strong>, "Exploring Communication Technologies, Standards, and Challenges in Electrified Vehicle Charging." <small>IEEE Open Journal of the Communications Society (IF: 6.3)</small></p>
+      </div>
+          <div class="pub-item">
+            <p><strong>Q. Wang, F. Zhou, R. Q. Hu and Y. Qian</strong>, "Energy-Efficient Beamforming and Cooperative Jamming in IRS-Assisted MISO Networks." <small>IEEE ICC 2020</small></p>
+    </div>
+          <div class="pub-item">
+            <p><strong>Q. Wang, L. T. Tan, R. Q. Hu and Y. Qian</strong>, "Hierarchical Energy Efficient Mobile Edge Computing in IoT Networks." <small>IEEE Internet of Things Journal</small></p>
+      </div>
+          <div class="pub-item">
+            <p><strong>Q. Wang and F. Zhou</strong>, "Fair Resource Allocation in an MEC-Enabled Ultra-Dense IoT Network with NOMA." <small>IEEE ICC Workshops 2019</small></p>
+      </div>
+          <div class="pub-item">
+            <p><strong>Q. Wang, L. T. Tan, R. Q. Hu, and G. Wu</strong>, "Hierarchical collaborative cloud and fog computing in IoT networks." <small>WCSP 2018</small></p>
+      </div>
+          <div class="pub-item">
+            <p><strong>H. Sun, Q. Wang, S. Ahmed, and R. Q. Hu</strong>, "Non-orthogonal multiple access in a mmWave based IoT wireless system with SWIPT." <small>IEEE VTC Spring 2017</small></p>
+      </div>
+          <div class="pub-item">
+            <p><strong>H. Sun, Q. Wang, R. Q. Hu and Y. Qian</strong>, "Outage Probability Study in a NOMA Relay System." <small>IEEE WCNC 2017</small></p>
+      </div>
+      </div>
+        <p style="margin-top:16px; text-align:center"><a href="https://scholar.google.com/citations?user=i2WquFgAAAAJ&hl=en" target="_blank" rel="noopener">View on Google Scholar →</a></p>
+      </div>
+    </div>
+  </section>
 
+  <!-- TEACHING -->
+  <section id="teaching">
+    <div class="container">
+      <h2 class="section-title">Teaching</h2>
+      <div class="card">
+        <div class="grid-2">
+          <div>
+            <h3 style="margin-top:0">Current Courses</h3>
+            <ul>
+              <li><strong>CSC 220 — Data Structures</strong><br/>Efficient data structures and algorithms with practical labs</li>
+              <li><strong>CSC 645 — Computer Networks</strong><br/>End-to-end networks, wireless systems, and security</li>
+              <li><strong>CSC 845 — Advanced Computer Networks</strong><br/>Research-oriented topics: 5G/6G, edge AI, spectrum sharing</li>
+            </ul>
+        </div>
+          <div>
+            <h3 style="margin-top:0">Research Opportunities</h3>
+            <p>I welcome motivated students (undergraduate and graduate) to join our research team. We offer opportunities in:</p>
+            <ul>
+              <li>Edge AI and on-device learning</li>
+              <li>Wireless spectrum sharing and security</li>
+              <li>Intelligent reflecting surfaces (IRS)</li>
+              <li>Privacy-preserving machine learning</li>
+            </ul>
+            <p><a href="teaching.html">Learn more about teaching and research opportunities →</a></p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/php-mail-form/validate.js"></script>
-  <script src="lib/chart/chart.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="card">
+        <div class="grid-2">
+          <div>
+            <p><strong>Email:</strong> <a href="mailto:qunwang@sfsu.edu">qunwang@sfsu.edu</a></p>
+            <p><strong>Office:</strong> San Francisco State University<br/>Computer Science Department</p>
+            <p><strong>Links:</strong><br/>
+              <a href="https://scholar.google.com/citations?user=i2WquFgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> · 
+              <a href="https://www.linkedin.com/in/qun-wang-claud/" target="_blank" rel="noopener">LinkedIn</a> · 
+              <a href="cider-lab.html">CIDER Lab</a>
+            </p>
+          </div>
+          <div>
+            <p>I'm open to collaborations and welcome student researchers (MS/BS). If you're interested in edge AI, on-device LLMs, or spectrum sharing, feel free to email with your CV and research interests.</p>
+            <p><strong>Research Areas:</strong> Edge AI, Wireless Systems, Spectrum Sharing, Security & Privacy, Distributed Learning</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+      <div>© <span id="y"></span> Qun Wang · SFSU</div>
+      <div>Design: minimal, fast, accessible (no frameworks)</div>
+    </div>
+  </footer>
 
+  <script>
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth',block:'start'}); document.getElementById('nav').classList.remove('open'); } });
+    });
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

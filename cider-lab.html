@@ -1,255 +1,527 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Qun Wang (王群) — SFSU CIDER Lab</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Raleway:400,300,700" rel="stylesheet">
-  <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SFSU CIDER Lab — Cybersecurity & Intelligent Distributed Edge Research</title>
+  <meta name="description" content="CIDER Lab at San Francisco State University: Edge AI, wireless systems, spectrum sharing & security, on‑device LLMs, and affordable AI solutions." />
+  <link rel="icon" href="img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    #headerwrap {
-      margin-bottom: 0 !important;
-      padding-bottom: 20px !important;
+    :root{
+      --bg:#f8fafc;           /* page background */
+      --card:#ffffff;         /* card bg */
+      --muted:#64748b;        /* secondary text */
+      --text:#1e293b;         /* primary text */
+      --brand:#3b82f6;        /* accent */
+      --brand-2:#10b981;      /* secondary accent */
+      --ring:rgba(0,0,0,.08);
+      --shadow:0 4px 20px rgba(0,0,0,.08);
+      --radius:12px;
     }
-    section#main {
-      margin-top: 0 !important;
-      padding-top: 20px !important;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif; 
+      color:var(--text); background:linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:1200px; margin-inline:auto; padding:0 20px}
+
+    /* Nav */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(8px); background:rgba(248,250,252,.95); border-bottom:1px solid var(--ring)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; gap:12px; align-items:center; font-weight:800; letter-spacing:.2px; color:var(--text)}
+    .brand img{width:28px; height:28px; border-radius:8px}
+    .nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+    .nav a{display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:8px 10px; border-radius:12px; color:var(--muted)}
+    .nav a:hover,.nav a.active{color:var(--text); background:rgba(59,130,246,.1)}
+    .menu-btn{display:none}
+
+    /* Hero */
+    header.hero{padding:88px 0 40px}
+    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:36px; align-items:center}
+    .badge{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; background:rgba(59,130,246,.1); color:#1d4ed8; border:1px solid rgba(59,130,246,.3); border-radius:999px; font-weight:700}
+    .title{font-weight:900; line-height:1.12; font-size:clamp(34px,4.8vw,56px); margin:12px 0 10px; color:var(--text)}
+    .subtitle{color:var(--muted); font-size:clamp(16px,2.2vw,18px)}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; border:1px solid var(--ring); background:#ffffff; color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:all 0.3s ease}
+    .btn:hover{transform:translateY(-2px); box-shadow:0 8px 25px rgba(0,0,0,.15)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),#60a5fa); color:#ffffff; font-weight:600}
+    .btn.ghost{background:transparent}
+    .hero-art{position:relative; text-align:center}
+    .hero-art img{width:100%; max-width:420px; border-radius:24px; border:1px solid var(--ring); box-shadow:0 8px 32px rgba(0,0,0,.1)}
+
+    /* Sections */
+    section{padding:64px 0}
+    h2.section-title{font-size:22px; letter-spacing:.4px; text-transform:uppercase; color:var(--muted); margin-bottom:24px}
+    .card{background:var(--card); border:1px solid var(--ring); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px}
+
+    /* Overview */
+    .overview{display:grid; grid-template-columns:1.2fr .8fr; gap:18px}
+    .kv{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+    .kv li{display:flex; gap:8px}
+    .kv span{color:var(--muted)}
+
+    /* Research areas */
+    .areas{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .area{padding:18px}
+    .area h3{margin:0 0 6px; font-size:16px}
+    .area p{margin:0; color:var(--muted); font-size:14px}
+
+    /* News timeline */
+    .timeline{display:grid; gap:14px}
+    .tl{display:grid; grid-template-columns:80px 1fr; gap:16px; align-items:start; padding:16px; border-left:3px solid var(--brand); position:relative; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .tl::before{content:""; position:absolute; left:-7px; top:24px; width:10px; height:10px; background:var(--brand); border-radius:50%; box-shadow:0 0 0 4px var(--bg)}
+    .tl time{color:var(--brand); font-weight:600; font-size:14px}
+    .tl p{margin:0; color:var(--text); position:relative; padding-left:16px}
+    .tl p::before{content:""; position:absolute; left:0; top:8px; width:6px; height:6px; background:var(--brand); border-radius:50%}
+
+    /* Team */
+    .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px}
+    .chip{padding:8px 16px; border-radius:20px; background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.2); font-size:14px; color:#1d4ed8; cursor:pointer; transition:all 0.3s ease; font-weight:500}
+    .chip.active{background:linear-gradient(135deg,var(--brand-2),#34d399); color:#ffffff}
+    .team{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .person{padding:16px; display:flex; gap:12px; align-items:center; background:var(--card); border:1px solid var(--ring); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .avatar{width:48px; height:48px; border-radius:8px; background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.2); display:flex; align-items:center; justify-content:center; font-weight:600; color:var(--brand); font-size:16px; flex-shrink:0}
+    .person-content{flex:1}
+    .person h4{margin:0 0 4px; font-size:16px; font-weight:600; color:var(--text)}
+    .person small{color:var(--muted); font-size:13px}
+
+    /* Grants */
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+    .box{padding:20px}
+
+    /* Scrollable lists */
+    .scrollable{max-height:400px; overflow-y:auto; padding-right:8px}
+    .scrollable::-webkit-scrollbar{width:6px}
+    .scrollable::-webkit-scrollbar-track{background:#f1f5f9; border-radius:3px}
+    .scrollable::-webkit-scrollbar-thumb{background:#cbd5e1; border-radius:3px}
+    .scrollable::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+
+    /* Footer */
+    footer{padding:40px 0; border-top:1px solid var(--ring); color:var(--muted); background:var(--card)}
+
+    /* Responsive */
+    @media (max-width: 1000px){
+      .hero-grid, .overview{grid-template-columns:1fr}
+      .areas{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .team{grid-template-columns:1fr}
+      .nav ul{display:none}
+      .menu-btn{display:inline-flex; align-items:center; gap:8px; color:var(--muted); background:transparent; border:1px solid var(--ring); border-radius:12px; padding:8px 10px}
+      .nav.open ul{display:flex; flex-direction:column; position:absolute; top:64px; right:14px; background:rgba(255,255,255,.98); border:1px solid var(--ring); border-radius:16px; padding:12px; width:min(260px,90vw); box-shadow:var(--shadow)}
+      .nav.open a{padding:10px 12px}
+      /* Hero responsive */
+      .hero .container > div{flex-direction:column; text-align:center; gap:20px}
+      .hero img{width:100px; height:100px}
     }
   </style>
 </head>
-<body data-spy="scroll" data-offset="64" data-target="#section-topbar">
-  <!-- <div id="section-topbar">
-    <div id="topbar-inner">
-      <div class="container">
-        <div class="row">
-          <div class="dropdown">
-            <ul id="nav" class="nav">
-              <li class="menu-item"><a href="index.html" title="Home"><i class="fa fa-home"></i></a></li>
-              <li class="menu-item"><a class="smothscroll" href="#main" title="Content"><i class="fa fa-file-text-o"></i></a></li>
-              <li class="menu-item"><a href="teaching.html" title="Teaching"><i class="fa fa-graduation-cap"></i></a></li>
-              <li class="menu-item"><a href="publications.html" title="Publications"><i class="fa fa-book"></i></a></li>
-              <li class="menu-item"><a href="cider-lab.html" title="SFSU CIDER Lab"><i class="fa fa-flask"></i></a></li>
-              <li class="menu-item"><a href="read-list.html" title="Read List"><i class="fa fa-list-ul"></i></a></li>
-              <li class="menu-item"><a class="smothscroll" href="#contact" title="Contact"><i class="fa fa-envelope"></i></a></li>
+<body>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="Back to Qun Wang Home">
+        <img src="img/apple-touch-icon.png" alt="QW"> <span>CIDER Lab @ SFSU</span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu" onclick="document.getElementById('nav').classList.toggle('open')">☰ Menu</button>
+      <ul>
+        <li><a href="#overview" class="active">Overview</a></li>
+        <li><a href="#areas">Research</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#grants">Grants</a></li>
+        <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
-  <div id="headerwrap">
-    <div class="container">
-      <div class="row centered">
-        <div class="col-lg-12">
-          <h1><font color="#00FFFF">Qun Wang (王群)</font></h1>
-          <h3><font color="#00FFFF">Assistant Professor, Computer Science @ SFSU | <a style="color:#00FFFF; text-decoration: underline;" href="mailto:qunwang@sfsu.edu">qunwang@sfsu.edu</a></font></h3>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <nav class="navbar navbar-default navbar-fixed-top" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.1);">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html" style="font-weight: bold; color: #333;">Qun Wang</a>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.html#about"><i class="fa fa-user"></i> About</a></li>
-          <li><a href="index.html#resume"><i class="fa fa-file-text-o"></i> Resume</a></li>
-          <li><a href="index.html#work"><i class="fa fa-briefcase"></i> Works</a></li>
-          <li class="dropdown active">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-flask"></i> Research <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="active"><a href="cider-lab.html"><i class="fa fa-flask"></i> CIDER Lab</a></li>
-              <li><a href="crii.html"><i class="fa fa-cogs"></i> CRII Project</a></li>
-              <li><a href="publications.html"><i class="fa fa-book"></i> Publications</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-graduation-cap"></i> Academic <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="teaching.html"><i class="fa fa-graduation-cap"></i> Teaching</a></li>
-              <li><a href="read-list.html"><i class="fa fa-list-ul"></i> Read List</a></li>
-            </ul>
-          </li>
-          <li><a href="index.html#contact"><i class="fa fa-envelope"></i> Contact</a></li>
-        </ul>
-      </div>
-    </div>
   </nav>
 
-
-  <div id="headerwrap" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 80px 0 60px; margin-top: 50px; color: white;">
+  <!-- HERO -->
+  <header class="hero">
     <div class="container">
-      <div class="row centered">
-        <div class="col-lg-12">
-          <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-            <div style="display: inline-flex; align-items: center; gap: 15px; margin-bottom: 20px; padding: 8px 20px; background: rgba(255,255,255,0.2); border-radius: 25px; backdrop-filter: blur(10px);">
-              <img src="img/cider.jpg" alt="CIDER Lab" style="width: 40px; height: 40px; border-radius: 8px;">
-              <span style="font-weight: 600;">SFSU CIDER Lab</span>
-            </div>
-            <h1 style="font-size: 2.8em; font-weight: 700; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Cybersecurity and Intelligent Distributed Edge Research Laboratory</h1>
-            <p style="font-size: 1.2em; opacity: 0.9; margin-bottom: 30px; line-height: 1.6;">Advancing next-generation intelligent wireless communication, edge intelligence applications, and affordable AI solutions</p>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-              <a href="#overview" class="btn btn-default" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; transition: all 0.3s ease;">Overview</a>
-              <a href="#thrusts" class="btn btn-default" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; transition: all 0.3s ease;">Research Areas</a>
-              <a href="#team" class="btn btn-default" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; transition: all 0.3s ease;">Team</a>
-            </div>
+      <div style="display: flex; align-items: center; gap: 30px; max-width: 1000px; margin: 0 auto;">
+        <div style="flex-shrink: 0;">
+          <img src="img/cider.jpg" alt="CIDER Lab" style="width: 120px; height: 120px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); object-fit: cover;" />
+        </div>
+        <div style="flex: 1;">
+          <h1 class="title" style="margin-bottom: 20px;">CIDER Lab — Cybersecurity & Intelligent Distributed Edge Research Laboratory</h1>
+          <p class="subtitle" style="margin-bottom: 30px;">We build practical, affordable AI systems for the edge. Our work spans on‑device LLMs, IRS‑assisted spectrum sharing, federated learning, and robust, privacy‑preserving wireless networks for smart cities and industrial IoT.</p>
+          <div class="cta">
+            <a class="btn primary" href="#areas">Explore Research Areas</a>
+            <a class="btn ghost" href="publications.html">Publications</a>
+            <a class="btn ghost" href="crii.html">NSF CRII Project</a>
           </div>
         </div>
       </div>
     </div>
+  </header>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="container overview">
+      <article class="card">
+        <h2 class="section-title">Overview</h2>
+        <p>CIDER Lab focuses on advancing next‑generation intelligent wireless communication, edge intelligence applications, and <em>affordable</em> AI solutions. We emphasize energy‑aware and secure learning across heterogeneous devices, targeting real‑world deployments and reproducible research artifacts.</p>
+        <div style="text-align: center; margin: 20px 0;">
+          <img src="img/ChatGPT Image Oct 6, 2025, 11_45_37 AM.png" alt="Research Visualization" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+        </div>
+        <ul class="kv" aria-label="Quick facts">
+          <li><strong>Affiliation:</strong> <span>San Francisco State University (SFSU)</span></li>
+          <li><strong>Lead:</strong> <span>Qun Wang (Assistant Professor)</span></li>
+          <li><strong>Keywords:</strong> <span>Edge AI, On‑device LLMs, IRS, Spectrum Sharing, Federated Learning, PLS, IoT Security</span></li>
+        </ul>
+      </article>
+      <aside class="card">
+        <h2 class="section-title">Facilities</h2>
+        <ul class="kv">
+          <li><strong>Testbed:</strong> <span>USRP (6 GHz), OpenWRT Wi‑Fi, multi‑panel IRS, sensors</span></li>
+          <li><strong>Compute:</strong> <span>SFSU HPC (A100s), RTX 4090 workstation, Jetson edge nodes</span></li>
+          <li><strong>Software:</strong> <span>PyTorch, NS‑3/5G‑LENA, reproducible open datasets/code</span></li>
+        </ul>
+      </aside>
   </div>
-  <section id="main" name="main">
-    <div class="container desc">
-      <div class="row">
-        <div class="col-lg-2 col-lg-offset-1">
-          <h5>SFSU CIDER LAB</h5>
+  </section>
+
+  <!-- AREAS -->
+  <section id="areas">
+    <div class="container">
+      <h2 class="section-title">Research Areas</h2>
+      <div class="areas">
+        <div class="card area">
+          <h3>Federated Learning + MPC</h3>
+          <p>Decentralized training with secure aggregation and privacy‑preserving analytics for cross‑organization collaboration.</p>
         </div>
-        <div class="col-lg-6">
-          <h6>Research Overview</h6>
-          <p>Cybersecurity and Intelligent Distributed Edge Research (CIDER) Lab focuses on advancing next-generation intelligent wireless communication, edge intelligence applications, and affordable AI solutions. Our research emphasizes efficiency and security improvements, aiming to develop robust, cutting-edge technologies for future communication systems. By leveraging federated learning, generative AI, GNNs, and large language models, we address key challenges in communication, security, and intelligent applications while ensuring scalability, privacy, and adaptability across diverse environments.</p>
-          <div style="text-align: center; margin: 20px 0;">
-            <img src="img/ChatGPT Image Oct 6, 2025, 11_45_37 AM.png" alt="Research Visualization" class="img-responsive" style="width: 100%; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-          </div>
-          
-          <h6>Research Areas</h6>
-          <ol>
-            <li><b>Federated Learning with Multi-Party Computation (MPC):</b> We are exploring federated learning frameworks integrated with multi-party computation to enhance privacy and data security. This research aims to enable decentralized learning while ensuring data confidentiality, particularly in scenarios where data privacy is paramount.</li>
-            <li><b>Module-Based CNN for IRS-Assisted Spectrum Sensing:</b> Our work focuses on using modular Convolutional Neural Networks (CNN) for Intelligent Reflecting Surface (IRS) assisted spectrum sensing in next-generation spectrum sharing networks. The goal is to improve spectrum sensing accuracy and efficiency, allowing better utilization of available spectrum resources in dynamic environments.</li>
-            <li><b>Generative AI-Based IoT Attack Detection:</b> We are investigating the use of generative AI techniques for detecting attacks in Internet of Things (IoT) environments. This research aims to enhance the security of IoT systems by identifying anomalous patterns and preventing malicious activities in real-time.</li>
-            <li><b>GNN-Based Physical Layer Security with Power Allocation:</b> We are developing Graph Neural Network (GNN) models to enhance physical layer security through efficient power allocation strategies. This work is focused on improving the robustness of wireless communication systems against eavesdropping and other security threats by optimizing power distribution.</li>
-            <li><b>Vision Camera-Based Hand Tracking and Gesture Recognition:</b> Our research includes the development of computer vision algorithms for real-time hand tracking and gesture recognition. This work aims to enable natural human-computer interaction, which has applications in smart environments and assistive technologies.</li>
-            <li><b>Phishing URL and Phishing UI Detection:</b> We are working on AI-based solutions for detecting phishing URLs and phishing user interfaces to enhance cybersecurity. By analyzing features of web pages and user interfaces, our models aim to detect and mitigate phishing attempts effectively.</li>
-            <li><b>On-Device LLM-Based Recycle Bin Design:</b> We are leveraging large language models (LLMs) to design an intelligent recycle bin that can operate on edge devices. The focus is on creating an efficient, context-aware solution that helps in sorting waste while maintaining privacy by performing computation locally.</li>
-            <li><b>LLM-Based 3D Layout Design:</b> Our research also extends to using LLMs for automated 3D layout design. This work is aimed at improving the efficiency and creativity of the design process, particularly for architectural and spatial planning applications.</li>
-          </ol>
-          <h6 class="mt">News</h6>
-          <h6>2025</h6>
-          <ul>
-            <li>I received a National Science Foundation (NSF) Collaborative Research CISE Core Small NeTS Grant on Intelligent Reflecting Surface Assisted Physical Layer Security Enhancement as lead PI, 3-year grant with $60,000 budget and collaborative with Dr. Haijian Sun from UGA and Dr. Hao Yue from UCSC.</li>
-            <li><img src="img/082025-Kumo.ai-Hackathon-30.jpg" alt="KumoRFM Hackathon Award" style="float: left; width: 200px; margin: 0 15px 10px 0; border-radius: 4px;">Our CIDER Lab project WildfireRFM won the 1st prize in KumoRFM Hacton, congratulations to Binrongzhu, Guiran Liu, and Yang Liu.</li>
-            <li>I received a National Science Foundation (NSF) CRII project on spectrum sharing and sensing network. This is a single-PI, 2-year grant with $175,000 budget.</li>
-            <li>Our research project has been selected for the Gilead Innovation Initiative 2025 Summer Research Award, with $5,000 allocated to Binrong Zhu and $5,000 to Yang Liu.</li>
-            <li>Congratulations to Xu Gu for being selected as the 2025 SFSU Graduate Distinguished Achievement Award Recipient.</li>
-            <li>Congratulations to Satvik Verma, Xu Gu, and Ruxue Jin on their graduation.</li>
-            <li>Satvik Verma presented our research at AAAI 2025 Spring Symposium.</li>
-            <li>Our research work: S. Verma, Q. Wang, E. W. Bethel, "Intelligent IoT Attack Detection via ODLLM," accepted by AAAI 2025 Spring Symposium.</li>
-            <li>Our research work: W. Guo, Q. Wang, H. Yue, H. Sun, R. Q. Hu. (2025). Efficient Phishing URL Detection Using Graph-based Machine Learning and Loopy Belief Propagation. Accepted by IEEE ICC 2025.</li>
-            <li>Our research work: Sicheng Liu, Qun Wang, Zhuwei Qin, Weishan Zhang, Jingyi Wang, and Xiang Ma, "IRS Assisted Decentralized Learning for Wideband Spectrum Sensing." Accepted by 2025 International Symposium on Intelligent Computing and Networking (ISICN 2025), Spring 2025. Sicheng Liu is a student from CSC 699.</li>
-            <li>Our research work: David Chen, Qun Wang, Haijian Sun, and Yue Hao, "GNN Based PLS Enhancement for Next Generation Spectrum Sharing Industrial Networks," Accepted by 2025 International Symposium on Intelligent Computing and Networking (ISICN 2025), Spring 2025. David Chen is a student from CSC 895.</li>
-            <li>Our paper: Qun Wang, Yingzhou Lu, Guiran Liu, Binrong Zhu, and Yang Liu, "LLM‑Assisted Alpha‑Fairness for 6 GHz Wi‑Fi/NR‑U Coexistence: An Agentic Orchestrator for Throughput, Energy, and SLA" has been accepted by IEEE IEMCON 2025 Conference (Graduate Research work).</li>
-            <li>Our paper: Guiran Liu, Binrong Zhu, Yang Liu, and Qun Wang, "Design of a Cross-Layer AI Agent for Secure Spectrum-Aware Network Slicing" has been accepted by Chen Institute Symposium for AI Accelerated Science 2025 (Graduate Research work).</li>
-            <li>I am accepted and invited to attend NSF NeTS Early Career Workshop 2025 at NSF with travel support.</li>
-          </ul>
-          
-          <h6>2024</h6>
-          <ul>
-            <li>Congratulations to Satvik Verma and Sicheng Liu for their student abstract accepted by IEEE DSAA'24 with travel support.</li>
-            <li>Serve as a guest editor for the Special Issue "Cognitive Semantic Communications for 6G Wireless Networks", VSI: CSC-6GWN in Physical Communication (IF: 2.0).</li>
-            <li>J. Xu, Q. Wang, Yuhang Cao, Baitao Zeng, Sicheng Liu. "A general-purpose device for interaction with LLMs." arXiv preprint arXiv:2408.10230. (Accepted by Future Technologies Conference (FTC) 2024, Sicheng Liu is a student from CSC 699)</li>
-            <li>X. Ma, Q. Wang, H. Sun, R. Q. Hu and Y. Qian, "CSMAAFL: Client Scheduling and Model Aggregation in Asynchronous Federated Learning," ICC 2024 - IEEE International Conference on Communications, Denver, CO, USA, 2024, pp. 274-279.</li>
-            <li>M. Xiang, Y. Zhou, H. Zhang, Q. Wang, H. Sun, H. Wang, and R. Q. Hu. "Exploring Communication Technologies, Standards, and Challenges in Electrified Vehicle Charging." arXiv preprint arXiv:2403.16830 (2024) (Accepted by IEEE Open Journal of the Communications Society, Impact Factor: 6.3).</li>
-            <li>"Design Effective and Equitable Professional Learning for Middle School Computer Science Teachers", Co-PI, Awarded by NSF 23-596 Discovery Research PreK-1, Fall 2024.</li>
-          </ul>
-
-          <h6>2023</h6>
-          <ul>
-            <li>"Intelligent Wireless Spectrum Monitoring with Decentralized On-device Learning," Co-Investigator, Co-PI, Awarded by SFSU RSCA Fund award, Spring 2023 (Internal Funding). Co-PI.</li>
-          </ul>
-
-          <h6 class="mt">Lab Members</h6>
-          <p><b>Current Graduate Students</b></p>
-          <ul>
-            <li>Yang Liu</li>
-            <li>Guiran Liu</li>
-            <li>Binrong Zhu</li>
-            <li>Mekonnen Tesfamichael Tesfazien</li>
-            <li>Shun Usami</li>
-            <li>Rohith Gannoju</li>
-          </ul>
-          
-          <p><b>Current Undergraduate Students</b></p>
-          <ul>
-            <li>Phuong Mai Nguyen</li>
-            <li>Edson Sanchez Bernal</li>
-            <li>Alberto Mezzo</li>
-            <li>Bohlander Ty J.</li>
-            <li>Eugenio Ramirez</li>
-          </ul>
-          
-          <p><b>Previous Students</b></p>
-          <ul>
-            <li>Xu Gu — "GenAI based meeting assistant design," Fall 2024-Spring 2025</li>
-            <li>Ruxue Jin — "LLM enhanced intelligent recycle bin design," Fall 2024-Spring 2025</li>
-            <li>David Chen — "Deep Learning Based Secure Energy Efficiency Optimization For Wireless IoT Networks," Spring 2024-Fall 2024</li>
-            <li>Jijeong Lee — "Stress Detector for College Students," Spring 2024-Present</li>
-            <li>Parth Pareshkumar Desai — "Anonymized Peer Review Matcher," Spring 2024-Present</li>
-            <li>Satvik Verma — "Generative AI-Based IoT Attack Detection," Fall 2024-Spring 2025</li>
-            <li>Yasaman Pakdel — "Privacy preservation in federated learning algorithms," Spring 2024</li>
-            <li>William Pan — "Intelligent photograph detection", Fall 2024</li>
-            <li>Sicheng Liu — "American Sign Language Recognition with CNN and LLM," Spring 2024</li>
-            <li>Krushna Thakkar — "Edge LLM and Machine Learning in Scientific Research Applications," Spring 2024</li>
-            <li>Michael Petrossian — "Attack and Defense Methods for eCTF Embedded System," Spring 2024</li>
-            <li>Ethan Hanlon — "Attack and Defense Methods for eCTF Embedded System," Spring 2024</li>
-            <li>Vinh Ngo — "Machine Learning Enhanced Network Scanner," Spring 2024</li>
-          </ul>
+        <div class="card area">
+          <h3>IRS‑Assisted Spectrum Sensing</h3>
+          <p>Modular CNN/GNN models to boost sensing accuracy and fairness in dynamic 6 GHz Wi‑Fi/NR‑U coexistence.</p>
+        </div>
+        <div class="card area">
+          <h3>Generative AI for IoT Security</h3>
+          <p>LLM/GenAI‑driven anomaly detection and rapid response for heterogeneous IoT deployments.</p>
+        </div>
+        <div class="card area">
+          <h3>GNN‑Based Physical‑Layer Security</h3>
+          <p>Topology‑aware power allocation and beamforming robust to eavesdropping and interference.</p>
+        </div>
+        <div class="card area">
+          <h3>Vision‑based Hand Tracking</h3>
+          <p>Lightweight camera‑only tracking and gesture interfaces for embedded and assistive systems.</p>
+        </div>
+        <div class="card area">
+          <h3>On‑Device LLM Applications</h3>
+          <p>Privacy‑preserving assistants for recycling, 3D layout design, and domain‑specific edge reasoning.</p>
         </div>
       </div>
-      <br>
     </div>
   </section>
-  <section id="contact" name="contact">
-    <div id="footwrap">
-      <div class="container desc">
-        <div class="row">
-          <div class="col-lg-2">
-            <h5>CONTACT</h5>
-          </div>
-          <div class="col-lg-5">
-            <p><t>Email</t><br/> <a href="mailto:qunwang@sfsu.edu">qunwang@sfsu.edu</a></p>
-          </div>
-          <div class="col-lg-5">
-            <p><t>Links</t><br/>
-              <a href="https://scholar.google.com/citations?user=i2WquFgAAAAJ&hl=en"><i class="fa fa-google"></i></a>
-              <a href="https://www.linkedin.com/in/qun-wang-a42ba9116/"><i class="fa fa-linkedin"></i></a>
-              <a href="https://www.researchgate.net/profile/Qun_Wang50"><i class="fa fa-book"></i></a>
-            </p>
+
+  <!-- NEWS -->
+  <section id="news">
+    <div class="container">
+      <h2 class="section-title">News</h2>
+      <div class="card">
+        <div class="scrollable">
+          <div class="timeline">
+            <div class="tl">
+              <time>2025</time>
+              <div>
+                <p>Received <strong>NSF Collaborative Research CISE Core Small NeTS Grant</strong> ($60,000) as Lead PI for "Intelligent Reflecting Surface Assisted Physical Layer Security Enhancement" with collaborators from UGA and UCSC.</p>
+                <p>Our CIDER Lab project <strong>WildfireRFM</strong> won the <strong>1st prize in KumoRFM Hackathon</strong>, congratulations to Binrong Zhu, Guiran Liu, and Yang Liu.</p>
+                <div style="margin: 10px 0; text-align: center;">
+                  <img src="img/082025-Kumo.ai-Hackathon-30.jpg" alt="KumoRFM Hackathon Award" style="max-width: 300px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+      </div>
+                <p>Received <strong>NSF CRII Grant</strong> ($175,000) as Single-PI for "Spectrum Sharing and Sensing Networks" research project.</p>
+                <p>Our research project has been selected for the <strong>Gilead Innovation Initiative 2025 Summer Research Award</strong>, with $5,000 to <strong>Binrong Zhu</strong> and $5,000 to <strong>Yang Liu</strong>.</p>
+                <p>Congratulations to <strong>Xu Gu</strong> for being selected as the <strong>2025 SFSU Graduate Distinguished Achievement Award</strong> Recipient.</p>
+                <p>Congratulations to <strong>Satvik Verma</strong>, <strong>Xu Gu</strong>, and <strong>Ruxue Jin</strong> on their graduation.</p>
+                <p><strong>Satvik Verma</strong> presented our research at <strong>AAAI 2025 Spring Symposium</strong>.</p>
+                <p><i>S. Verma, Q. Wang, E. W. Bethel</i>, "Intelligent IoT Attack Detection via ODLLM," accepted by <strong>AAAI 2025 Spring Symposium</strong>.</p>
+                <p><i>W. Guo, Q. Wang, H. Yue, H. Sun, R. Q. Hu</i>, "Efficient Phishing URL Detection Using Graph-based Machine Learning and Loopy Belief Propagation." Accepted by <strong>IEEE ICC 2025</strong>.</p>
+                <p><i>S. Liu, Q. Wang, Z. Qin, W. Zhang, J. Wang, X. Ma</i>, "IRS Assisted Decentralized Learning for Wideband Spectrum Sensing." Accepted by <strong>ISICN 2025</strong>.</p>
+                <p><i>D. Chen, Q. Wang, H. Sun, Y. Hao</i>, "GNN Based PLS Enhancement for Next Generation Spectrum Sharing Industrial Networks." Accepted by <strong>ISICN 2025</strong>.</p>
+                <p><i>Q. Wang, Y. Lu, G. Liu, B. Zhu, Y. Liu</i>, "LLM‑Assisted Alpha‑Fairness for 6 GHz Wi‑Fi/NR‑U Coexistence: An Agentic Orchestrator for Throughput, Energy, and SLA." Accepted by <strong>IEEE IEMCON 2025</strong>.</p>
+                <p><i>G. Liu, B. Zhu, Y. Liu, Q. Wang</i>, "Design of a Cross-Layer AI Agent for Secure Spectrum-Aware Network Slicing." Accepted by <strong>Chen Institute Symposium for AI Accelerated Science 2025</strong>.</p>
+                <p>Invited to attend <strong>NSF NeTS Early Career Workshop 2025</strong> with travel support.</p>
+      </div>
+    </div>
+            <div class="tl">
+              <time>2024</time>
+              <div>
+                <p>Congratulations to <strong>Satvik Verma</strong> and <strong>Sicheng Liu</strong> for their student abstract accepted by <strong>IEEE DSAA'24</strong> with travel support.</p>
+                <p>Guest editor for the Special Issue "Cognitive Semantic Communications for 6G Wireless Networks", VSI: CSC-6GWN in <i>Physical Communication</i> (IF: 2.0).</p>
+                <p><i>J. Xu, Q. Wang, Y. Cao, B. Zeng, S. Liu</i>, "A general-purpose device for interaction with llms." Accepted by <strong>Future Technologies Conference (FTC) 2024</strong>.</p>
+                <p><i>X. Ma, Q. Wang, H. Sun, R. Q. Hu, Y. Qian</i>, "CSMAAFL: Client Scheduling and Model Aggregation in Asynchronous Federated Learning." <strong>IEEE ICC 2024</strong>.</p>
+                <p><i>M. Xiang, Y. Zhou, H. Zhang, Q. Wang, H. Sun, H. Wang, R. Q. Hu</i>, "Exploring Communication Technologies, Standards, and Challenges in Electrified Vehicle Charging." Accepted by <strong>IEEE Open Journal of the Communications Society</strong> (IF: 6.3).</p>
+                <p>Received <strong>NSF Discovery Research PreK-12 Grant</strong> ($1,396,551) as Co-PI for "Design Effective and Equitable Professional Learning for Middle School Computer Science Teachers".</p>
+              </div>
+            </div>
+            <div class="tl">
+              <time>2023</time>
+              <div>
+                <p>Received <strong>SFSU RSCA Fund Award</strong> as Co-PI for "Intelligent Wireless Spectrum Monitoring with Decentralized On-device Learning" (Internal Funding, Spring 2023).</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/php-mail-form/validate.js"></script>
-  <script src="lib/chart/chart.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="container">
+      <h2 class="section-title">Team</h2>
+      <div class="filters" role="tablist" aria-label="Filter team">
+        <button class="chip active" data-filter="all" aria-selected="true">All</button>
+        <button class="chip" data-filter="grad">Graduate</button>
+        <button class="chip" data-filter="ug">Undergraduate</button>
+        <button class="chip" data-filter="alumni">Alumni</button>
+  </div>
+      <div class="team" id="teamGrid">
+        <!-- Graduate -->
+        <div class="person" data-tags="grad">
+          <div class="avatar">YL</div>
+          <div class="person-content">
+            <h4>Yang Liu</h4>
+            <small>Graduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="grad">
+          <div class="avatar">GL</div>
+          <div class="person-content">
+            <h4>Guiran Liu</h4>
+            <small>Graduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="grad">
+          <div class="avatar">BZ</div>
+          <div class="person-content">
+            <h4>Binrong Zhu</h4>
+            <small>Graduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="grad">
+          <div class="avatar">MT</div>
+          <div class="person-content">
+            <h4>Mekonnen Tesfamichael Tesfazien</h4>
+            <small>Graduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="grad">
+          <div class="avatar">SU</div>
+          <div class="person-content">
+            <h4>Shun Usami</h4>
+            <small>Graduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="grad">
+          <div class="avatar">RG</div>
+          <div class="person-content">
+            <h4>Rohith Gannoju</h4>
+            <small>Graduate Researcher</small>
+          </div>
+        </div>
+        <!-- Undergraduate -->
+        <div class="person" data-tags="ug">
+          <div class="avatar">PN</div>
+          <div class="person-content">
+            <h4>Phuong Mai Nguyen</h4>
+            <small>Undergraduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="ug">
+          <div class="avatar">ES</div>
+          <div class="person-content">
+            <h4>Edson Sanchez Bernal</h4>
+            <small>Undergraduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="ug">
+          <div class="avatar">AM</div>
+          <div class="person-content">
+            <h4>Alberto Mezzo</h4>
+            <small>Undergraduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="ug">
+          <div class="avatar">BT</div>
+          <div class="person-content">
+            <h4>Bohlander Ty J.</h4>
+            <small>Undergraduate Researcher</small>
+          </div>
+        </div>
+        <div class="person" data-tags="ug">
+          <div class="avatar">ER</div>
+          <div class="person-content">
+            <h4>Eugenio Ramirez</h4>
+            <small>Undergraduate Researcher</small>
+          </div>
+        </div>
+        <!-- Alumni / Previous -->
+        <div class="person" data-tags="alumni">
+          <div class="avatar">XG</div>
+          <div class="person-content">
+            <h4>Xu Gu</h4>
+            <small>GenAI Meeting Assistant — 2024–2025</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">RJ</div>
+          <div class="person-content">
+            <h4>Ruxue Jin</h4>
+            <small>LLM Recycle Bin — 2024–2025</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">DC</div>
+          <div class="person-content">
+            <h4>David Chen</h4>
+            <small>Secure Energy‑Efficient Wireless — 2024</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">JL</div>
+          <div class="person-content">
+            <h4>Jijeong Lee</h4>
+            <small>Stress Detector — 2024–present</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">PD</div>
+          <div class="person-content">
+            <h4>Parth Pareshkumar Desai</h4>
+            <small>Peer Review Matcher — 2024–present</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">SV</div>
+          <div class="person-content">
+            <h4>Satvik Verma</h4>
+            <small>IoT Attack Detection — 2024–2025</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">YP</div>
+          <div class="person-content">
+            <h4>Yasaman Pakdel</h4>
+            <small>FL Privacy — 2024</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">WP</div>
+          <div class="person-content">
+            <h4>William Pan</h4>
+            <small>Photo Intelligence — 2024</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">SL</div>
+          <div class="person-content">
+            <h4>Sicheng Liu</h4>
+            <small>ASL w/ CNN+LLM — 2024</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">KT</div>
+          <div class="person-content">
+            <h4>Krushna Thakkar</h4>
+            <small>Edge LLM for Science — 2024</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">MP</div>
+          <div class="person-content">
+            <h4>Michael Petrossian</h4>
+            <small>eCTF — 2024</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">EH</div>
+          <div class="person-content">
+            <h4>Ethan Hanlon</h4>
+            <small>eCTF — 2024</small>
+          </div>
+        </div>
+        <div class="person" data-tags="alumni">
+          <div class="avatar">VN</div>
+          <div class="person-content">
+            <h4>Vinh Ngo</h4>
+            <small>ML‑Enhanced Network Scanner — 2024</small>
+          </div>
+        </div>
+      </div>
+          </div>
+  </section>
+
+  <!-- GRANTS & PROGRAMS -->
+  <section id="grants">
+    <div class="container">
+      <h2 class="section-title">Funding & Programs</h2>
+      <div class="grid-2">
+        <div class="card box">
+          <h3 style="margin-top:0">Active Awards</h3>
+          <ul>
+            <li>NSF CISE Core Small (NeTS) — IRS‑assisted PLS for ultra‑dense IoT. <em>Lead‑PI</em>. <span class="chip">NSF #2523751</span></li>
+            <li>NSF CRII (NeTS) — Spectrum sharing & sensing with intelligent IRS. <em>PI</em>. <span class="chip">NSF #2451262</span></li>
+            <li>NSF DRK‑12 — Effective & equitable CS teacher PL. <em>Co‑PI</em>.</li>
+            <li>OpenAI Cybersecurity Grant — Privacy‑preserving network threat detection.</li>
+            <li>Gilead Innovation Initiative Summer Research Award — Students: B. Zhu, Y. Liu.</li>
+          </ul>
+        </div>
+        <div class="card box">
+          <h3 style="margin-top:0">Resources & Courses</h3>
+          <ul>
+            <li>Testbed: USRPs, OpenWRT Wi‑Fi, IRS panels, sensors</li>
+            <li>Compute: SFSU HPC (A100), RTX 4090 lab servers, Jetson edge nodes</li>
+            <li>Courses: CSC 220 · CSC 645 · CSC 845</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid-2">
+        <div class="card box">
+          <p><strong>Email:</strong> <a href="mailto:qunwang@sfsu.edu">qunwang@sfsu.edu</a></p>
+          <p><strong>Links:</strong> <a href="publications.html">Publications</a> · <a href="crii.html">CRII Project</a> · <a href="index.html">Faculty Page</a></p>
+          </div>
+        <div class="card box">
+          <p>We are recruiting motivated MS/BS students. If you are interested in edge AI, on‑device LLMs, spectrum sharing, or wireless security, email your CV and research interests.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+      <div>© <span id="y"></span> CIDER Lab · San Francisco State University</div>
+      <div>Design: minimal, fast, accessible (no frameworks). <a href="#top">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // smooth scroll + close mobile menu
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth',block:'start'}); document.getElementById('nav').classList.remove('open'); } });
+    });
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // team filters
+    const chips=[...document.querySelectorAll('.chip[data-filter]')];
+    const cards=[...document.querySelectorAll('#teamGrid .person')];
+    chips.forEach(c=>c.addEventListener('click',()=>{
+      chips.forEach(x=>x.classList.remove('active')); c.classList.add('active');
+      const tag=c.dataset.filter; cards.forEach(p=>{ p.style.display = (tag==='all' || p.dataset.tags.includes(tag)) ? '' : 'none'; });
+    }));
+  </script>
 </body>
 </html>
